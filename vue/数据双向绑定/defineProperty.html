@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue的数据双向绑定之Object.defineProperty</title>
+    <script>
+        var Animal = {
+            name: "cat",
+            age: 3,
+            sex: "girl",
+            foods: ["小虾米","玉米"]
+        };
+        Object.keys(Animal).forEach(function (key) {
+            console.log("key: " + key);
+            Object.defineProperty(Animal, key, {
+                enumberable: true,
+                configurable: true,
+                get: function () {
+                    console.log("get func: ");
+                    // console.log(value);
+                },
+                set: function (newVal) {
+                    console.log("set func: " + newVal);
+                    // console.log(newVal);
+                }
+            });
+
+        })
+        console.log("outer");
+        console.log(Animal.name);
+        Animal.name = "dog";
+        Animal.age = 6;
+        Animal.sex = "boy";
+        Animal.foods = [...Animal.foods,"虾仁"];
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

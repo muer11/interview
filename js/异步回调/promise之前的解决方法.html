@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>promise之前的解决方法</title>
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js" />
+    <script>
+        // 前情提要：f2等待f1执行完成后再执行，其中f1是一个很耗时的操作
+        // 参考文案 http://www.ruanyifeng.com/blog/2012/12/asynchronous%EF%BC%BFjavascript.html
+        /*
+            function f1() {
+                setTimeout(function () {
+                    console.log("这是一个很耗时的操作");
+                }, 100)
+            }
+            function f2() {
+                console.log("function 2 return value");
+            }
+        */
+
+
+        // 方法1 回调函数
+        /*
+            function f1(callback) {
+                setTimeout(function () {
+                    console.log("这是一个很耗时的操作");
+                    callback();
+                }, 100)
+            }
+
+            function f2() {
+                console.log("function 2 return value");
+            }
+            f1(f2);
+        */
+
+        //方法2 jquery方法 测试失效
+        /*
+            function f1() {
+                setTimeout(function () {
+                    console.log("这是一个很耗时的操作");
+                    f1.trigger("done");
+                }, 100)
+            }   
+
+            function f2() {
+                console.log("function 2 return value");
+            }
+
+            f1.on("done", f2);
+        */
+
+        // 方法3 发布/订阅 测试失效
+        /*
+            function f1() {
+                setTimeout(function () {
+                    console.log("这是一个很耗时的操作");
+                    jQuery.publish("done");
+                }, 100)
+            }
+
+            function f2() {
+                console.log("function 2 return value");
+            }
+
+            jQuery.subscribe("done", f2);
+        */
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

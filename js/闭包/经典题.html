@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>闭包题</title>
+    <script>
+        //依次输出0~6
+        for (var i = 0; i < 7; i++) {
+            setTimeout(function () {
+                console.log("----------")
+                console.log(i)
+            }, 1000)
+        }
+
+        //改法1
+        for (var i = 0; i < 7; i++) {
+            (function (n) {
+                setTimeout(function () {
+                    console.log("立即执行函数")
+                    console.log(n)
+                }, 1000);
+            })(i)
+        }
+        //改法2
+        for (let i = 0; i < 7; i++) {
+            setTimeout(function () {
+                console.log("let块级作用域")
+                console.log(i)
+            }, 1000)
+        }
+
+        // 改法3
+        for (var i = 0; i < 7; i++) {
+            setTimeout(function (m) {
+                console.log("setTimeout 第三个参数");
+                console.log(m)
+            }, 1000, i)
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>移动端自适应</title>
+    <style>
+        header {
+            font-size: 1.4rem;
+        }
+
+        .left {
+            width: 5rem;
+            height: 100px;
+            background: #ccc
+        }
+    </style>
+    <script>
+        // let clientWidth = document.documentElement.clientWidth;
+        // let fontSize = clientWidth / (750 / 100);
+        // document.documentElement.style.fontSize = fontSize + "px";
+        // console.log(clientWidth);
+        // console.log(fontSize);
+
+        console.log("devicePixelRatio")
+        console.log(devicePixelRatio)
+        let dpr = 1 / devicePixelRatio;
+        document.querySelector("meta[name='viewport']").setAttribute("content",
+            "width=device-width,user-scalable=no, initial-scale=" + dpr + ",maximum-scale=" + dpr +
+            ",minimum-scale=" + dpr);
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 10 + "px";
+    </script>
+</head>
+
+<body>
+    <header>我是头部啊</header>
+    <content>
+        <div class="left">
+            我是中间左边内容
+        </div>
+        <div class="right">
+            我是中间右边内容
+        </div>
+
+    </content>
+    <footer>我是尾部啊</footer>
+</body>
+
+</html>

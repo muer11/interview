@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue中路由原理之 history</title>
+    <script>
+        history.pushState({
+            color: "red"
+        }, "red", "red");
+        history.back();
+        setTimeout(() => {
+            history.forward();
+        }, 0);
+        window.onpopstate = function (event) {
+            console.log(event.state);
+            if(event.state && event.state.color === "red"){
+                document.body.style.color = "red";
+            }
+        }
+    </script>
+</head>
+
+<body>
+ <p>111111111111111</p>
+</body>
+
+</html>

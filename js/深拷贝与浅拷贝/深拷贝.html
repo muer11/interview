@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深拷贝</title>
+    <script>
+        var obj = {
+            name: "muer",
+            info: {
+                age: 14,
+                address: "杭州",
+                email: undefined,
+                sex: Symbol("girl")
+            },
+            hasSomething: ["fruits", "goods", "money"],
+            eat: function () {
+                console.log("eating...");
+            }
+        }
+        var c1 = obj;
+
+        // 方法1 自己写方法
+        // var c2 = copyFunc(obj);
+        // function copyFunc(obj) {
+        //     let res = {};
+        //     for (let prop in obj) {
+        //         if (obj.hasOwnProperty(prop)) { //hasOwnProperty 比较in方法的好处是 它会忽略来自原型链上的属性
+        //             res[prop] = obj[prop];
+        //             if (typeof obj[prop] == "object" && typeof obj[prop] !== "null") { // object类型中包含object function array，而浅拷贝中对这三者的改变 会影响原始对象的属性 所以采用递归的方式再进行浅拷贝
+        //                 res[prop] = copyFunc(obj[prop])
+        //             }
+        //         }
+        //     }
+        //     return res;
+        // }
+
+        //方法2 JSON.parse(JSON.stringify( ))
+        //遗留问题： 自动忽略函数、undefined、symbol
+        var c2 = JSON.parse(JSON.stringify(obj));
+
+        c1.name = "chun";
+        c2.name = "dong";
+        c1.info.age = 18;
+        c2.info.age = 20;
+        // c2.eat();
+        console.log(obj);
+        console.log(c1);
+        console.log(c2);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浅拷贝</title>
+    <script>
+        var obj = {
+            name: "muer",
+            info: {
+                age: 14,
+                address: "杭州"
+            }
+        }
+        var c1 = obj;
+
+        // 方法1 自己写一个函数
+        // var c2 = copyFunc(obj);
+        // function copyFunc(obj) {
+        //     let res = {};
+        //     for (let prop in obj) {
+        //         if (obj.hasOwnProperty(prop)) {
+        //             res[prop] = obj[prop];
+        //         }
+        //     }
+        //     return res;
+        // }
+
+        //方法2 Object.assign()
+        // var c2 = Object.assign({},obj);
+
+        //方法3 ...展开运算符 低版本浏览器不支持
+        var c2 = {...obj};
+
+        c1.name = "chun";
+        c2.name = "dong";
+        c1.info.age = 18;
+        c2.info.age = 20;
+        console.log(obj);
+        console.log(c1);
+        console.log(c2);
+    </script>
+</head>
+
+<body>
+    <p>浅拷贝可复制对象的第一层属性 改变复制后的对象的属性不会改变原始对象 <br />
+        而第二层及以上的属性 的改变会影响原始对象 <br />
+        因为。。。原始数据类型和引用数据类型的区别
+    </p>
+</body>
+
+</html>

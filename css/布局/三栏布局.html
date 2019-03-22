@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>三栏布局</title>
+    <style>
+        /* 方法1：浮动 BFC原理
+         * 思路： 浮动元素成为BFC calc可以计算元素大小（calc表达式符号间保留空格）
+         */
+        /* .container div{
+            height: 100px;
+            float: left;
+        }
+        .leftFixed{
+            width: 100px;
+            background: #ccc;
+        }
+        .rightFixed{
+            width: 100px;
+            background: skyblue;
+        }
+        .center{
+            width: calc(100% - 200px);
+            background: yellowgreen;
+        } */
+
+        /* 方法2：FLEX布局
+         * 思路：flex-basis固定多余空间大小 flex-grow自适应中间块的大小
+         * flex-basis 定义了在分配多余空间之前，项目占据的主轴空间（main size）
+         * flex-grow  定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
+         */
+        .container {
+            display: flex;
+            align-items: flex-start;
+        }
+        .container div{
+            height: 100px;
+        }
+        .container .leftFixed {
+            flex-basis: 200px;
+            background: #ccc;
+            float: right;
+        }
+        .container .rightFixed {
+            flex-basis: 200px;
+            background: skyblue;
+        }
+        .center {
+            flex-grow: 1; 
+            background: yellowgreen;
+        }
+
+        /* 方法3：绝对定位
+         * 思路：父div是relative, 左中右三个div是absolute, 左div left:0, 右div right:0, 中间div left左div宽 right右div宽
+         */
+        /* .container {
+            position: relative;
+            height: 100%;
+        }
+        html,
+        body,
+        .container div {    */
+            /* height: 100px; */
+            /* height: 100%;  占满整屏 */
+        /* }
+        .leftFixed {
+            position: absolute;
+            left: 0;
+            width: 100px;
+            background: #ccc;
+        }
+        .rightFixed {
+            position: absolute;
+            right: 0;
+            width: 100px;
+            background: skyblue;
+        }
+        .center {
+            background: yellowgreen;
+            position: absolute;
+            left: 100px;
+            right: 100px;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="leftFixed"></div>
+        <div class="center"></div>
+        <div class="rightFixed">
+            <p>听说设置了flex后子元素的float clear vertical-align会失效</p>
+        </div>
+    </div>
+</body>
+
+</html>
